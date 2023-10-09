@@ -6,7 +6,7 @@ import {StoreModule} from "./store/store.module";
 
 import {StoreComponent} from "./store/store.component";
 import {CheckoutComponent} from "./store/checkout.component";
-import {CartDetailComponent} from "./cartDetail.component";
+import {CartDetailComponent} from "./store/cartDetail.component";
 import {RouterModule} from "@angular/router";
 import {StoreFirstGuard} from "../storeFirst.guard";
 

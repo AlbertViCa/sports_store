@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import {AppComponent} from './app.component';
 import {StoreModule} from "./store/store.module";
@@ -12,7 +12,9 @@ import {StoreFirstGuard} from "../storeFirst.guard";
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, StoreModule,
+    imports: [
+        BrowserAnimationsModule,
+        StoreModule,
         RouterModule.forRoot([
             {
                 path: "store", component: StoreComponent,
@@ -24,6 +26,12 @@ import {StoreFirstGuard} from "../storeFirst.guard";
             },
             {
                 path: "checkout", component: CheckoutComponent,
+                canActivate: [StoreFirstGuard]
+            },
+            {
+                path: "admin",
+                loadChildren: () => import("./admin/admin.module")
+                    .then(m => m.AdminModule),
                 canActivate: [StoreFirstGuard]
             },
             {path: "**", redirectTo: "/store"},
